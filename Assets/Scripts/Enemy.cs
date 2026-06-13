@@ -6,15 +6,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int health = 2;
     [SerializeField] public int scoreValue = 100;
     private EnemySpawner enemySpawner;
-    private Level2 level2;
     [SerializeField] private GameObject powerUpPrefab;
     private void Start()
     {
         enemySpawner = FindAnyObjectByType<EnemySpawner>(); // Find the EnemySpawner in the scene
-        if (SceneManager.GetActiveScene().name == "Level2")
-        {
-            level2 = FindAnyObjectByType<Level2>();
-        }
     }
     public void TakeDamage(int damage)
     {
@@ -26,11 +21,6 @@ public class Enemy : MonoBehaviour
     }
     public void Die()
     {
-        if (SceneManager.GetActiveScene().name == "Level2")
-        {
-            int index = gameObject.name.IndexOf("(Clone)"); // Find the index of "(Clone)" in the enemy's name
-            level2.enemiesAliveNames.Remove(gameObject.name.Substring(0, index));
-        }
         if (enemySpawner != null)
         {
             // enemySpawner.enemiesAlive.Remove(gameObject); // Remove the enemy from the list of alive enemies in the EnemySpawner

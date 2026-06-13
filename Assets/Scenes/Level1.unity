@@ -362,7 +362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   squareEnemyPrefab: {fileID: 7767320249317992116, guid: cf9b82d659f14486795c342b86917f06, type: 3}
   seekerEnemyPrefab: {fileID: 5167929767516804184, guid: 061a336fa567d4baeb1189da2128ca98, type: 3}
-  boss1Prefab: {fileID: 281342271888299270, guid: d86ac56ad8f8b47b69fb83137abce33e, type: 3}
+  config: {fileID: 11400000, guid: 7a3f437f7d6e40888913616c80732661, type: 2}
   enemySpawn1: {fileID: 993517120}
   enemySpawn2: {fileID: 538085915}
   enemySpawn3: {fileID: 942831066}

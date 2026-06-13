@@ -160,12 +160,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 147225089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15f25579d08aa4858a4395ab0f84a900, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c12e81c9cb104347bf50d999f57f36b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Level2
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   squareEnemyPrefab: {fileID: 7767320249317992116, guid: cf9b82d659f14486795c342b86917f06, type: 3}
   seekerEnemyPrefab: {fileID: 5167929767516804184, guid: 061a336fa567d4baeb1189da2128ca98, type: 3}
-  boss2Prefab: {fileID: 1117819554373939161, guid: e162d73666e794d90b47da60d3433e7d, type: 3}
+  config: {fileID: 11400000, guid: c8dba62d4e494fb2ab6bb6b5fd076f71, type: 2}
   enemySpawn1: {fileID: 993517120}
   enemySpawn2: {fileID: 538085915}
   enemySpawn3: {fileID: 942831066}

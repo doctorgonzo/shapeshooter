@@ -5,9 +5,10 @@ public class Startup : MonoBehaviour
 {
     public void HandleStartClicked()
     {
-        if (ScoreKeeper.Instance != null)
+        if (Player.Instance != null)
         {
-        ScoreKeeper.Instance.RemoveScore(ScoreKeeper.Instance.GetScore());
+            Player.Instance.RestartPlayer();
+            Player.Instance.ResetPlayer();
         }
         SceneManager.LoadScene("Level1");
     }

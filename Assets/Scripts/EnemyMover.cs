@@ -16,7 +16,6 @@ public class EnemyMover : MonoBehaviour
     [SerializeField] private GameObject hardPoint5;
     [SerializeField] private GameObject hardPoint6;
     private EnemySpawner enemySpawner;
-    private Level2 level2;
     private float offScreenTimer = 0f;
     private float shootTimer = 0f;
     private float shootCooldown = 1.5f; // Time in seconds between enemy shots
@@ -48,7 +47,6 @@ public class EnemyMover : MonoBehaviour
     {
         // rb.linearVelocity = Vector2.left * moveSpeed; // Move the enemy to the left at the specified speed
         enemySpawner = FindAnyObjectByType<EnemySpawner>(); // Find the EnemySpawner in the scene
-        level2 = FindAnyObjectByType<Level2>();
     }
     private void FixedUpdate()
     {
@@ -176,11 +174,6 @@ public class EnemyMover : MonoBehaviour
             offScreenTimer += Time.deltaTime; // Increment the timer while the enemy is off-screen
             if (offScreenTimer >= offScreenThreshold)
             {
-                if (SceneManager.GetActiveScene().name == "Level2")
-                {
-                    int index = gameObject.name.IndexOf("(Clone)"); // Find the index of "(Clone)" in the enemy's name
-                    level2.enemiesAliveNames.Remove(gameObject.name.Substring(0, index));
-                }
                 if (enemySpawner != null)
                 {
                     // enemySpawner.enemiesAlive.Remove(gameObject); // Remove the enemy from the list of alive enemies in the EnemySpawner
@@ -190,6 +183,10 @@ public class EnemyMover : MonoBehaviour
                 ScoreKeeper.Instance.RemoveScore(50);
                 Destroy(gameObject); // Destroy the enemy if it has moved off-screen
             }
+        }
+        else
+        {
+            offScreenTimer = 0f; // Reset the timer if the enemy is back on-screen
         }
     }
 }

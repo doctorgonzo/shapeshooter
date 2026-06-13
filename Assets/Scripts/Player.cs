@@ -272,6 +272,10 @@ public class Player : MonoBehaviour
    }
    public void RestartPlayer()
     {
+            damageTimer = 0;
+            shotsFired = 0;
+            shotsHit = 0;
+            accuracy = 0;
             lives = maxLives;
             health = maxHealth;
             shield = maxShield;
@@ -282,6 +286,9 @@ public class Player : MonoBehaviour
             UpdateLivesVisual();
             UpdateShieldVisual();
             ScoreKeeper.Instance.ResetScore();
+            transform.position = respawnPoint != null ? respawnPoint.position : startingPosition;
+            transform.rotation = respawnPoint != null ? respawnPoint.rotation : startingRotation;
+            StopPlayerMovement();
     }
    public void UpdateLivesVisual()
    {

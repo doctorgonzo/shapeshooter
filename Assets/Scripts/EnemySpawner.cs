@@ -6,9 +6,14 @@ using Unity.Mathematics;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Level data")]
+    [SerializeField] private LevelConfig config;
+
+    [Header("Enemy prefabs")]
     [SerializeField] private GameObject squareEnemyPrefab;
     [SerializeField] private GameObject seekerEnemyPrefab;
-    [SerializeField] private GameObject boss1Prefab;
+
+    [Header("Scene references")]
     [SerializeField] private GameObject enemySpawn1;
     [SerializeField] private GameObject enemySpawn2;
     [SerializeField] private GameObject enemySpawn3;
@@ -18,85 +23,66 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject enemySpawn7;
     [SerializeField] private TMPro.TextMeshProUGUI enemiesAliveText;
     [SerializeField] private TMPro.TextMeshProUGUI waveText;
-    public List<String> enemiesAliveNames = new List<String>();
-    private bool initialSpawnDone = false;
-    private bool wave2Spawned = false;
-    private bool wave3Spawned = false;
-    private bool boss1Spawned = false;
-    private bool isTransitioning = false;
 
+    public List<String> enemiesAliveNames = new List<String>();
+    private int currentWave = 0;
+    private bool isTransitioning = false;
 
     private void Start()
     {
-        StartCoroutine(StartSpawning());
+        if (config == null)
+            Debug.LogError($"{name}: EnemySpawner has no LevelConfig assigned — no enemies will spawn.", this);
     }
 
     private void Update()
     {
+        if (config == null) return;
+
         if (Input.GetKeyDown(KeyCode.R))
         {
-            initialSpawnDone = true;
-            wave2Spawned = true;
-            wave3Spawned = true;
+            // Dev skip: fast-forward so the final (boss) wave runs next.
+            currentWave = Mathf.Max(currentWave, config.waves.Count - 1);
         }
-        enemiesAliveText.text = "Enemies Remaining: " + enemiesAliveNames.Count;
-        waveText.text = "Wave: " + (1 + Convert.ToInt32(wave2Spawned) + Convert.ToInt32(wave3Spawned) + Convert.ToInt32(boss1Spawned)).ToString();
 
-        if (!isTransitioning && enemiesAliveNames.Count == 0 && initialSpawnDone && !wave2Spawned)
+        enemiesAliveText.text = "Enemies Remaining: " + enemiesAliveNames.Count;
+        waveText.text = "Wave: " + Mathf.Max(1, currentWave);
+
+        // A wave starts when the previous one is fully cleared. isTransitioning guards the
+        // window between "last wave cleared" and "next wave's first enemy spawned".
+        if (!isTransitioning && enemiesAliveNames.Count == 0 && currentWave < config.waves.Count)
         {
-            wave2Spawned = true;
             isTransitioning = true;
-            StartCoroutine(SpawnWave2());
-        }
-        else if (!isTransitioning && enemiesAliveNames.Count == 0 && wave2Spawned && !wave3Spawned)
-        {
-            wave3Spawned = true;
-            isTransitioning = true;
-            StartCoroutine(SpawnWave3());
-        }
-        else if (!isTransitioning && enemiesAliveNames.Count == 0 && wave3Spawned && !boss1Spawned)
-        {
-            boss1Spawned = true;
-            isTransitioning = true;
-            StartCoroutine(SpawnBoss1());
+            StartCoroutine(RunWave(config.waves[currentWave]));
+            currentWave++;
         }
     }
 
-    private IEnumerator SpawnWave2()
+    private IEnumerator RunWave(Wave wave)
     {
-        yield return new WaitForSeconds(5f);
-        SpawnCircle();
-        yield return new WaitForSeconds(4.5f);
-        SpawnWedge();
-        yield return new WaitForSeconds(4.5f);
-        SpawnLine();
+        foreach (WaveStep step in wave.steps)
+        {
+            yield return new WaitForSeconds(step.delay);
+            SpawnFormation(step.formation);
+        }
         isTransitioning = false; // enemies are now alive, safe to re-enable checks
     }
 
-    private IEnumerator SpawnWave3()
+    private void SpawnFormation(Formation formation)
     {
-        yield return new WaitForSeconds(5f);
-        SpawnCircle();
-        yield return new WaitForSeconds(4.5f);
-        SpawnLine();
-        yield return new WaitForSeconds(4.5f);
-        SpawnCircle();
-        isTransitioning = false;
+        switch (formation)
+        {
+            case Formation.Wedge:  SpawnWedge();  break;
+            case Formation.Circle: SpawnCircle(); break;
+            case Formation.Line:   SpawnLine();   break;
+            case Formation.Seeker: SpawnSeeker(); break;
+            case Formation.Boss:   SpawnBoss();   break;
+        }
     }
 
-    private IEnumerator SpawnBoss1()
+    private void SpawnBoss()
     {
-        yield return new WaitForSeconds(5f);
-        Instantiate(boss1Prefab, enemySpawn1.transform.position, Quaternion.identity);
-        enemiesAliveNames.Add(boss1Prefab.name);
-        isTransitioning = false;
-    }
-    private IEnumerator StartSpawning()
-    {
-        yield return new WaitForSeconds(2f); // Initial delay before the first spawn
-        SpawnWedge();
-        yield return new WaitForSeconds(5f); // Delay between spawns
-        SpawnCircle();
+        Instantiate(config.bossPrefab, enemySpawn1.transform.position, Quaternion.identity);
+        enemiesAliveNames.Add(config.bossPrefab.name);
     }
 
     private IEnumerator WedgeDelay1()
@@ -146,7 +132,6 @@ public class EnemySpawner : MonoBehaviour
         enemiesAliveNames.Add(squareEnemyPrefab.name);
         Instantiate(squareEnemyPrefab, enemySpawn5.transform.position, Quaternion.identity);
         enemiesAliveNames.Add(squareEnemyPrefab.name);
-        initialSpawnDone = true;
     }
 
     private void SpawnLine()
