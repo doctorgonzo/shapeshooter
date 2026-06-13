@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 4c12e81c9cb104347bf50d999f57f36b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - squareEnemyPrefab: {fileID: 7767320249317992116, guid: cf9b82d659f14486795c342b86917f06, type: 3}
+  - enemySpawn1: {instanceID: 0}
+  - enemySpawn2: {instanceID: 0}
+  - enemySpawn3: {instanceID: 0}
+  - enemySpawn4: {instanceID: 0}
+  - enemySpawn5: {instanceID: 0}
+  - enemySpawn6: {instanceID: 0}
+  - enemySpawn7: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
