@@ -10,7 +10,8 @@ public class Startup : MonoBehaviour
             Player.Instance.RestartPlayer();
             Player.Instance.ResetPlayer();
         }
-        SceneManager.LoadScene("Level1");
+        LevelSequence.Reset();
+        SceneManager.LoadScene(LevelSequence.CurrentScene);
     }
     public void HandleQuitClicked()
     {

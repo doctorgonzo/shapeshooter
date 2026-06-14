@@ -24,7 +24,8 @@ public class GameOver : MonoBehaviour
                 Player.Instance.SetPlayerControls(true);
                 Player.Instance.SetPlayerVisible(true);
                 Player.Instance.isDying = false;
-                SceneManager.LoadScene("Level2");
+                LevelSequence.Advance();
+                SceneManager.LoadScene(LevelSequence.CurrentScene);
             }
         }
     }

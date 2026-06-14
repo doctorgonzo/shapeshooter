@@ -19,7 +19,7 @@ public class EnemyMover : MonoBehaviour
     private float offScreenTimer = 0f;
     private float shootTimer = 0f;
     private float shootCooldown = 1.5f; // Time in seconds between enemy shots
-    private float offScreenThreshold = 3.5f; // Time in seconds before the enemy is destroyed after moving off-screen
+    private float offScreenThreshold = 1.5f; // Time in seconds before the enemy is destroyed after moving off-screen
     private Transform playerTransform;
     private bool isBoss = false;
     private bool isSeeking = false;
@@ -156,7 +156,6 @@ public class EnemyMover : MonoBehaviour
         {
             if (enemySpawner != null)
             {
-                // enemySpawner.enemiesAlive.Remove(gameObject); // Remove the enemy from the list of alive enemies in the EnemySpawner
                 int index = gameObject.name.IndexOf("(Clone)"); // Find the index of "(Clone)" in the enemy's name
                 enemySpawner.enemiesAliveNames.Remove(gameObject.name.Substring(0, index)); // Remove the enemy's name from the list of alive enemy names in the EnemySpawner
             }

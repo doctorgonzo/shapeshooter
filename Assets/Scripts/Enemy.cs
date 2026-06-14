@@ -34,19 +34,13 @@ public class Enemy : MonoBehaviour
                 Instantiate(powerUpPrefab, transform.position, Quaternion.identity); // Spawn a power-up at the enemy's position
             }
         }
-        if (gameObject.name.Contains("Boss1Prefab"))
+        if (gameObject.name.Contains("Boss"))
         {
             Player.Instance.SetPlayerCollider(false);
             Player.Instance.SetPlayerControls(false);
             Player.Instance.SetPlayerVisible(false);
-            SceneManager.LoadScene("LevelComplete");
-        }
-        if (gameObject.name.Contains("Boss2Prefab"))
-        {
-            Player.Instance.SetPlayerCollider(false);
-            Player.Instance.SetPlayerControls(false);
-            Player.Instance.SetPlayerVisible(false);
-            SceneManager.LoadScene("YouWin");
+            // The level list decides whether this boss ended a level or the whole game.
+            SceneManager.LoadScene(LevelSequence.HasNext ? "LevelComplete" : "YouWin");
         }
         ScoreKeeper.Instance.AddScore(scoreValue); // Add score to the ScoreKeeper when the enemy dies
         Destroy(gameObject); // Destroy the enemy game object
