@@ -24,6 +24,7 @@ public class GameOver : MonoBehaviour
                 Player.Instance.SetPlayerControls(true);
                 Player.Instance.SetPlayerVisible(true);
                 Player.Instance.isDying = false;
+                Player.Instance.ResetPlayer(); // stop residual velocity + snap to spawn so the ship enters the next level on-screen
                 LevelSequence.Advance();
                 SceneManager.LoadScene(LevelSequence.CurrentScene);
             }
