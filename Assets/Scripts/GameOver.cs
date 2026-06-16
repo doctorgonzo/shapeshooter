@@ -28,6 +28,10 @@ public class GameOver : MonoBehaviour
     }
     private void DoFlashText()
 {
+    // Some end-screens (e.g. GameOver) hand the restart-text flashing to a FlashText component
+    // instead and leave this field unwired — don't start the coroutine and NRE on a null text.
+    if (restartText == null)
+        return;
     if (!isFlashing)
         StartCoroutine(FlashyText());
 }
