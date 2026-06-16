@@ -14,7 +14,7 @@ public class BulletMover : MonoBehaviour
     {
         StartCoroutine(KillTimer());
         bulletRB.AddForce(transform.up * bulletSpeed, ForceMode2D.Impulse);
-        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        player = Player.Instance;
     }
     private IEnumerator KillTimer()
     {
@@ -24,6 +24,11 @@ public class BulletMover : MonoBehaviour
     void FixedUpdate()
     {
         if (!isSeeking) return;
+
+    // Player is scene-local now; re-acquire if it wasn't around when this bullet spawned,
+    // and bail if there's still no ship to seek (e.g. mid-respawn or after it's gone).
+    if (player == null) player = Player.Instance;
+    if (player == null) return;
 
     Vector2 dirToPlayer = ((Vector2)player.transform.position - bulletRB.position).normalized;
     float angle = Vector2.SignedAngle(bulletRB.linearVelocity.normalized, dirToPlayer);
@@ -40,7 +45,10 @@ public class BulletMover : MonoBehaviour
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             if (enemy != null)
             {
-                Player.Instance.shotsHit++;
+                if (Player.Instance != null)
+                {
+                    Player.Instance.shotsHit++;
+                }
                 enemy.TakeDamage(1); // Assuming the bullet does 1 damage
             }
         }

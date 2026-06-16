@@ -13,18 +13,14 @@ public class GameOver : MonoBehaviour
     private void Update()
     {
         DoFlashText();
-        shotsFired.text = "Shots Fired: " + Player.Instance.shotsFired.ToString();
-        shotsHit.text = "Shots Hit: " + Player.Instance.shotsHit.ToString();
-        accuracy.text = "Total Accuracy: " + Player.Instance.accuracy.ToString("P");
+        shotsFired.text = "Shots Fired: " + PlayerState.ShotsFired.ToString();
+        shotsHit.text = "Shots Hit: " + PlayerState.ShotsHit.ToString();
+        accuracy.text = "Total Accuracy: " + PlayerState.Accuracy.ToString("P");
         if (SceneManager.GetActiveScene().name == "LevelComplete")
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Player.Instance.SetPlayerCollider(true);
-                Player.Instance.SetPlayerControls(true);
-                Player.Instance.SetPlayerVisible(true);
-                Player.Instance.isDying = false;
-                Player.Instance.ResetPlayer(); // stop residual velocity + snap to spawn so the ship enters the next level on-screen
+                // No live player in this menu scene — the next level spawns a fresh ship.
                 LevelSequence.Advance();
                 SceneManager.LoadScene(LevelSequence.CurrentScene);
             }

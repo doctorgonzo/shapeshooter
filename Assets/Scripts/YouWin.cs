@@ -42,7 +42,7 @@ public class YouWin : MonoBehaviour
 
     private void Start()
     {
-        finalScore = ScoreKeeper.Instance.GetScore();
+        finalScore = PlayerState.Score;
         scoreText.text = "Final Score: " + finalScore;
         RefreshLeaderboardDisplay();
         SetScoreSubmissionVisible(leaderboard != null && leaderboard.IsHighScore(finalScore));

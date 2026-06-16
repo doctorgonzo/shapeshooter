@@ -36,13 +36,16 @@ public class Enemy : MonoBehaviour
         }
         if (gameObject.name.Contains("Boss"))
         {
-            Player.Instance.SetPlayerCollider(false);
-            Player.Instance.SetPlayerControls(false);
-            Player.Instance.SetPlayerVisible(false);
+            if (Player.Instance != null)
+            {
+                Player.Instance.SetPlayerCollider(false);
+                Player.Instance.SetPlayerControls(false);
+                Player.Instance.SetPlayerVisible(false);
+            }
             // The level list decides whether this boss ended a level or the whole game.
             SceneManager.LoadScene(LevelSequence.HasNext ? "LevelComplete" : "YouWin");
         }
-        ScoreKeeper.Instance.AddScore(scoreValue); // Add score to the ScoreKeeper when the enemy dies
+        PlayerState.AddScore(scoreValue); // Credit the player's run score when the enemy dies
         Destroy(gameObject); // Destroy the enemy game object
     }
 }

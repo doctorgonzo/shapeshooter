@@ -35,6 +35,10 @@ public class PowerUp : MonoBehaviour
     private void FixedUpdate()
     {
         rb.linearVelocity = Vector2.left * moveSpeed;
+        if (Player.Instance == null) // No ship to drift toward (e.g. the player just died) — keep drifting left.
+        {
+            return;
+        }
         Vector2 directionToPlayer = Player.Instance.transform.position - transform.position;
         if (directionToPlayer.magnitude < 5f && directionToPlayer.magnitude > 0.1f) // If we're farther than 5 units from the player, move towards them
         {

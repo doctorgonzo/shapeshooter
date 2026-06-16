@@ -5,11 +5,7 @@ public class Startup : MonoBehaviour
 {
     public void HandleStartClicked()
     {
-        if (Player.Instance != null)
-        {
-            Player.Instance.RestartPlayer();
-            Player.Instance.ResetPlayer();
-        }
+        PlayerState.ResetForNewGame();
         LevelSequence.Reset();
         SceneManager.LoadScene(LevelSequence.CurrentScene);
     }

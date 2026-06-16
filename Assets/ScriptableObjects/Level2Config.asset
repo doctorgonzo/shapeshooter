@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4332ab019c9248dda1badd4d793a480d, type: 3}
   m_Name: Level2Config
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   bossPrefab: {fileID: 1117819554373939161, guid: e162d73666e794d90b47da60d3433e7d, type: 3}
   waves:
   - steps:
@@ -36,6 +36,11 @@ MonoBehaviour:
     - delay: 3.5
       formation: 1
     - delay: 3
+      formation: 0
+  - steps:
+    - delay: 2
+      formation: 2
+    - delay: 1.5
       formation: 0
   - steps:
     - delay: 3

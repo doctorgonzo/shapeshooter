@@ -6,7 +6,7 @@
 public static class LevelSequence
 {
     // The only place level order is defined.
-    public static readonly string[] Levels = { "Level1", "Level2", "Level3" };
+    public static readonly string[] Levels = { "Level1", "Level2", "Level3", "Level4" };
 
     public static int CurrentIndex { get; private set; } = 0;
 

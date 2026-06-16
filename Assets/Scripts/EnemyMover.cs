@@ -29,7 +29,7 @@ public class EnemyMover : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerTransform = GameObject.FindWithTag("Player").transform; // Find the player's transform in the scene
+        playerTransform = Player.Instance != null ? Player.Instance.transform : null; // Player is scene-local; may be absent
         if (gameObject.name.Contains("Boss"))
         {
             isBoss = true; // Set isBoss to true if the enemy is a boss
@@ -109,7 +109,7 @@ public class EnemyMover : MonoBehaviour
 {
     Transform[] hardPoints = { hardPoint1.transform, hardPoint2.transform, hardPoint3.transform, hardPoint4.transform, hardPoint5.transform, hardPoint6.transform };
 
-    Vector2 directionToPlayer = playerTransform.position - transform.position;
+    Vector2 directionToPlayer = playerTransform != null ? (Vector2)(playerTransform.position - transform.position) : Vector2.zero;
     float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
 
     foreach (Transform hardPoint in hardPoints)
@@ -148,7 +148,8 @@ public class EnemyMover : MonoBehaviour
 
         shootTimer = shootCooldown;
     }
-    playerTransform.position = Player.Instance.gameObject.transform.position;
+    // Keep the cached player transform current (it's scene-local and may respawn/disappear).
+    if (Player.Instance != null) playerTransform = Player.Instance.transform;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -179,7 +180,7 @@ public class EnemyMover : MonoBehaviour
                     int index = gameObject.name.IndexOf("(Clone)"); // Find the index of "(Clone)" in the enemy's name
                     enemySpawner.enemiesAliveNames.Remove(gameObject.name.Substring(0, index)); // Remove the enemy's name from the list of alive enemy names in the EnemySpawner
                 }
-                ScoreKeeper.Instance.RemoveScore(50);
+                PlayerState.RemoveScore(50);
                 Destroy(gameObject); // Destroy the enemy if it has moved off-screen
             }
         }

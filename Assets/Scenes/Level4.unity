@@ -358,7 +358,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 2f6ce158d691a4cdeb25f793e4ee3935, type: 3}
+  m_Texture: {fileID: 2800000, guid: db5c11b0a5fc14ccfb647f7b56fb5645, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -373,6 +373,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277358797}
   m_CullTransparentMesh: 1
+--- !u!1 &374225679 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5254981743395908704, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
+  m_PrefabInstance: {fileID: 1511327715}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &514191320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,6 +1426,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!50 &1460921232 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 678418782776201312, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
+  m_PrefabInstance: {fileID: 1511327715}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1482128212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,38 +1510,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1534617623
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1534617624}
-  m_Layer: 0
-  m_Name: EnemySpawn5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1534617624
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1534617623}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: -4.42, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1546121125
+--- !u!1001 &1511327715
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1598,7 +1577,7 @@ PrefabInstance:
     - target: {fileID: 6447622684550228210, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
       propertyPath: playerRB
       value: 
-      objectReference: {fileID: 1546121126}
+      objectReference: {fileID: 1460921232}
     - target: {fileID: 6447622684550228210, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
       propertyPath: moveSpeed
       value: 13.3
@@ -1606,15 +1585,15 @@ PrefabInstance:
     - target: {fileID: 6447622684550228210, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
       propertyPath: hardPoint1
       value: 
-      objectReference: {fileID: 1546121129}
+      objectReference: {fileID: 374225679}
     - target: {fileID: 6447622684550228210, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
       propertyPath: hardPoint2
       value: 
-      objectReference: {fileID: 1546121128}
+      objectReference: {fileID: 1586078936}
     - target: {fileID: 6447622684550228210, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
       propertyPath: hardPoint3
       value: 
-      objectReference: {fileID: 1546121127}
+      objectReference: {fileID: 1563932991}
     - target: {fileID: 6447622684550228210, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
       propertyPath: singleShotCooldown
       value: 0.01
@@ -1628,26 +1607,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
---- !u!50 &1546121126 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 678418782776201312, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-  m_PrefabInstance: {fileID: 1546121125}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1546121127 stripped
+--- !u!1 &1534617623
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3814943227775808944, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-  m_PrefabInstance: {fileID: 1546121125}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1546121128 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 702982002499025579, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-  m_PrefabInstance: {fileID: 1546121125}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1534617624}
+  m_Layer: 0
+  m_Name: EnemySpawn5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1534617624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1546121129 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5254981743395908704, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-  m_PrefabInstance: {fileID: 1546121125}
-  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534617623}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10, y: -4.42, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1550608162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,6 +1716,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 13.860757, y: 0.37679863}
   m_EdgeRadius: 0
+--- !u!1 &1563932991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3814943227775808944, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
+  m_PrefabInstance: {fileID: 1511327715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1586078936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 702982002499025579, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
+  m_PrefabInstance: {fileID: 1511327715}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1628390951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,4 +2021,4 @@ SceneRoots:
   - {fileID: 1482128215}
   - {fileID: 1704028608}
   - {fileID: 1383348283}
-  - {fileID: 1546121125}
+  - {fileID: 1511327715}

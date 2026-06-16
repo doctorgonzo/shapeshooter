@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
    [SerializeField] public int maxHealth = 4;
-   [SerializeField] public int maxLives = 3;
    public int health;
-   public int lives;
    [SerializeField] public int maxShield = 5;
    public int shield;
    [SerializeField] private SpriteRenderer shieldSpriteRenderer;
@@ -25,9 +23,14 @@ public class Player : MonoBehaviour
     private Vector3 startingPosition;
     private Quaternion startingRotation;
     public bool isDying;
-    public float shotsFired;
-    public float shotsHit;
-    public float accuracy;
+
+    // Run-spanning state lives in PlayerState so it survives scene loads. These proxies keep the
+    // existing Player.Instance.lives / .shotsFired / .shotsHit / .accuracy call sites working.
+    public int lives { get => PlayerState.Lives; set => PlayerState.Lives = value; }
+    public float shotsFired { get => PlayerState.ShotsFired; set => PlayerState.ShotsFired = value; }
+    public float shotsHit { get => PlayerState.ShotsHit; set => PlayerState.ShotsHit = value; }
+    public float accuracy => PlayerState.Accuracy;
+
     public static Player Instance {get; private set;}
    private void Awake()
    {
@@ -36,18 +39,16 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        // Set the global reference to this instance
+        // One player per scene; the ship is placed in each gameplay scene (no DontDestroyOnLoad).
         Instance = this;
-       // Optional: Keep this object alive across scene transitions
-       DontDestroyOnLoad(gameObject);
        playerController = GetComponent<PlayerController>();
        playerRB = GetComponent<Rigidbody2D>();
        playerCollider = GetComponent<Collider2D>();
        playerSpriteRenderer = GetComponent<SpriteRenderer>();
        startingPosition = transform.position;
        startingRotation = transform.rotation;
+       // Health and shield always start full at the top of a level; lives carry over via PlayerState.
        health = maxHealth;
-       lives = maxLives;
        shield = maxShield;
        UpdateShieldVisual();
        UpdateLivesVisual();
@@ -57,10 +58,6 @@ public class Player : MonoBehaviour
         if (isDying)
         {
             return;
-        }
-        if (shotsFired > 0)
-        {
-            accuracy = shotsHit / shotsFired;
         }
         damageTimer += Time.deltaTime;
         if (shield < maxShield && damageTimer >= shieldRegenStart)
@@ -86,12 +83,12 @@ public class Player : MonoBehaviour
             playerSpriteRenderer.color = Color.orangeRed;
         }
     }
-    private void OnLevelWasLoaded(int level)
+    private void OnDestroy()
     {
-        lifeIcons[0] = GameObject.Find("LivesDisplay1");
-        lifeIcons[1] = GameObject.Find("LivesDisplay2");
-        lifeIcons[2] = GameObject.Find("LivesDisplay3");
-        UpdateLivesVisual();
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
     public void TakeDamage(int damage)
    {
@@ -265,31 +262,11 @@ public class Player : MonoBehaviour
        shield = maxShield;
        damageTimer = 0f;
        UpdateShieldVisual();
-
+       UpdateLivesVisual();
        transform.position = respawnPoint != null ? respawnPoint.position : startingPosition;
        transform.rotation = respawnPoint != null ? respawnPoint.rotation : startingRotation;
        StopPlayerMovement();
    }
-   public void RestartPlayer()
-    {
-            damageTimer = 0;
-            shotsFired = 0;
-            shotsHit = 0;
-            accuracy = 0;
-            lives = maxLives;
-            health = maxHealth;
-            shield = maxShield;
-            SetPlayerCollider(true);
-            SetPlayerControls(true);
-            SetPlayerVisible(true);
-            isDying = false;
-            UpdateLivesVisual();
-            UpdateShieldVisual();
-            ScoreKeeper.Instance.ResetScore();
-            transform.position = respawnPoint != null ? respawnPoint.position : startingPosition;
-            transform.rotation = respawnPoint != null ? respawnPoint.rotation : startingRotation;
-            StopPlayerMovement();
-    }
    public void UpdateLivesVisual()
    {
        if (livesText != null)

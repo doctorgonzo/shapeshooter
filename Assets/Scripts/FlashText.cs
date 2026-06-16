@@ -19,7 +19,7 @@ public class FlashText : MonoBehaviour
     DoFlashText();
     if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Player.Instance.RestartPlayer();
+            PlayerState.ResetForNewGame();
             LevelSequence.Reset();
             SceneManager.LoadScene(LevelSequence.CurrentScene);
         }
