@@ -10,37 +10,45 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4332ab019c9248dda1badd4d793a480d, type: 3}
-  m_Name: Level3Config
-  m_EditorClassIdentifier: 
-  bossPrefab: {fileID: 1117819554373939161, guid: 03a9b0703e2a6462ba245dcd0c2b5094, type: 3}
+  m_Name: Level4Config
+  m_EditorClassIdentifier: Assembly-CSharp::LevelConfig
+  bossPrefab: {fileID: 1117819554373939161, guid: aba45ab7add3945c4a1020ad971a3d1d, type: 3}
   waves:
   - steps:
-    - delay: 2
-      formation: 0
-    - delay: 5
-      formation: 1
-  - steps:
-    - delay: 4
-      formation: 1
-    - delay: 3.5
-      formation: 0
-    - delay: 3.5
-      formation: 2
     - delay: 3
+      formation: 1
+    - delay: 2
       formation: 1
   - steps:
     - delay: 3
-      formation: 1
-    - delay: 3.5
-      formation: 2
-    - delay: 3.5
-      formation: 1
-    - delay: 3
       formation: 0
+    - delay: 2
+      formation: 2
+    - delay: 2
+      formation: 2
   - steps:
+    - delay: 3
+      formation: 2
     - delay: 2
-      formation: 0
+      formation: 1
     - delay: 2
       formation: 2
+  - steps:
     - delay: 3
+      formation: 1
+    - delay: 1
+      formation: 3
+    - delay: 1
+      formation: 3
+    - delay: 2
+      formation: 1
+  - steps:
+    - delay: 3
+      formation: 2
+    - delay: 2
+      formation: 2
+  - steps:
+    - delay: 3
+      formation: 0
+    - delay: 1
       formation: 4

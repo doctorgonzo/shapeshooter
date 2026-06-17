@@ -7,6 +7,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int scoreValue = 100;
     private EnemySpawner enemySpawner;
     [SerializeField] private GameObject powerUpPrefab;
+    [SerializeField] private GameObject squareExplosionPrefab;
+    [SerializeField] private GameObject seekExplosionPrefab;
+
     private void Start()
     {
         enemySpawner = FindAnyObjectByType<EnemySpawner>(); // Find the EnemySpawner in the scene
@@ -42,10 +45,20 @@ public class Enemy : MonoBehaviour
                 Player.Instance.SetPlayerControls(false);
                 Player.Instance.SetPlayerVisible(false);
             }
-            // The level list decides whether this boss ended a level or the whole game.
+            // Trust the scene we actually beat (not a possibly-stale counter), then let the level
+            // list decide whether this boss ended a level or the whole game.
+            LevelSequence.SyncTo(SceneManager.GetActiveScene().name);
             SceneManager.LoadScene(LevelSequence.HasNext ? "LevelComplete" : "YouWin");
         }
         PlayerState.AddScore(scoreValue); // Credit the player's run score when the enemy dies
         Destroy(gameObject); // Destroy the enemy game object
+        if(gameObject.name.Contains("Square"))
+        {
+            Instantiate(squareExplosionPrefab, transform.position, Quaternion.identity);
+        }
+        else if (gameObject.name.Contains("Seek"))
+        {
+            Instantiate(seekExplosionPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

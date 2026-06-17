@@ -20,7 +20,6 @@ public class GameOver : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                // No live player in this menu scene — the next level spawns a fresh ship.
                 LevelSequence.Advance();
                 SceneManager.LoadScene(LevelSequence.CurrentScene);
             }

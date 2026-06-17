@@ -238,3 +238,5 @@ MonoBehaviour:
   health: 2
   scoreValue: 100
   powerUpPrefab: {fileID: 6155654900405346175, guid: 8f35a695890d04ffe9431fc989409338, type: 3}
+  squareExplosionPrefab: {fileID: 7190224438193852753, guid: b2a14e3583bf84fe8950fd83de7e55c6, type: 3}
+  seekExplosionPrefab: {fileID: 3204677487742359318, guid: d9d12720f18504e04a8a353a3d711996, type: 3}

@@ -12,6 +12,17 @@ public static class LevelSequence
 
     public static void Reset() => CurrentIndex = 0;
 
+    /// <summary>
+    /// Snap CurrentIndex to a level scene by name. Lets completion logic trust the scene you're
+    /// actually in rather than a counter that drifts when a level is loaded out of order
+    /// (e.g. Play-testing a single scene). No-op if the name isn't a level.
+    /// </summary>
+    public static void SyncTo(string sceneName)
+    {
+        int i = System.Array.IndexOf(Levels, sceneName);
+        if (i >= 0) CurrentIndex = i;
+    }
+
     public static bool HasNext => CurrentIndex + 1 < Levels.Length;
 
     public static string CurrentScene => Levels[CurrentIndex];

@@ -109,14 +109,15 @@ public class EnemyMover : MonoBehaviour
 {
     Transform[] hardPoints = { hardPoint1.transform, hardPoint2.transform, hardPoint3.transform, hardPoint4.transform, hardPoint5.transform, hardPoint6.transform };
 
-    Vector2 directionToPlayer = playerTransform != null ? (Vector2)(playerTransform.position - transform.position) : Vector2.zero;
-    float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
-
     foreach (Transform hardPoint in hardPoints)
     {
-        GameObject bullet = Instantiate(enemyBulletPrefab, hardPoint1.transform.position, quaternion.Euler(0,0,90));
+        // Re-aim per shot so each bullet leads toward where the player is right now,
+        // not where they were when the volley started (shots are staggered).
+        Vector2 directionToPlayer = playerTransform != null ? (Vector2)(playerTransform.position - hardPoint.position) : Vector2.up;
+        float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+
+        GameObject bullet = Instantiate(enemyBulletPrefab, hardPoint.position, Quaternion.Euler(0, 0, angle - 90));
         bullet.GetComponent<BulletMover>().isSeeking = true;
-        // Instantiate(enemyBulletPrefab, hardPoint.position, Quaternion.Euler(0, 0, angle - 90));
         yield return new WaitForSeconds(UnityEngine.Random.Range(0.1f, 0.5f)); // Random delay between shots for a more dynamic pattern
     }
 }
