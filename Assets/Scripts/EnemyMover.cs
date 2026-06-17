@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using Unity.Mathematics;
 using UnityEngine;
@@ -9,12 +10,7 @@ public class EnemyMover : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject enemyBulletPrefab;
-    [SerializeField] private GameObject hardPoint1;
-    [SerializeField] private GameObject hardPoint2;
-    [SerializeField] private GameObject hardPoint3;
-    [SerializeField] private GameObject hardPoint4;
-    [SerializeField] private GameObject hardPoint5;
-    [SerializeField] private GameObject hardPoint6;
+    [SerializeField] private GameObject[] hardPoints; // Assign any number; bullets fire from each.
     private EnemySpawner enemySpawner;
     private float offScreenTimer = 0f;
     private float shootTimer = 0f;
@@ -83,14 +79,31 @@ public class EnemyMover : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(Vector3.forward, directionToPlayer);
         }
     }
+    // The transforms to fire from: every assigned hardpoint, or this enemy's own transform as a
+    // fallback so it still shoots even with nothing wired up. Never returns an empty list.
+    private List<Transform> GetFirePoints()
+    {
+        List<Transform> points = new List<Transform>();
+        if (hardPoints != null)
+        {
+            foreach (GameObject hp in hardPoints)
+            {
+                if (hp != null) points.Add(hp.transform);
+            }
+        }
+        if (points.Count == 0) points.Add(transform);
+        return points;
+    }
+
     private void Shoot()
     {
+        Transform firePoint = GetFirePoints()[0];
         if (gameObject.name.Contains("Seek") || gameObject.name.Contains("Boss"))
         {
-            GameObject bullet = Instantiate(enemyBulletPrefab, hardPoint1.transform.position, quaternion.Euler(0,0,90));
+            GameObject bullet = Instantiate(enemyBulletPrefab, firePoint.position, quaternion.Euler(0,0,90));
             bullet.GetComponent<BulletMover>().isSeeking = true;
         }
-        Instantiate(enemyBulletPrefab, hardPoint1.transform.position, Quaternion.Euler(0,0,90));
+        Instantiate(enemyBulletPrefab, firePoint.position, Quaternion.Euler(0,0,90));
     }
     private void ShootDown()
     {
@@ -107,9 +120,7 @@ public class EnemyMover : MonoBehaviour
     }
     private IEnumerator ShootBossCoroutine()
 {
-    Transform[] hardPoints = { hardPoint1.transform, hardPoint2.transform, hardPoint3.transform, hardPoint4.transform, hardPoint5.transform, hardPoint6.transform };
-
-    foreach (Transform hardPoint in hardPoints)
+    foreach (Transform hardPoint in GetFirePoints())
     {
         // Re-aim per shot so each bullet leads toward where the player is right now,
         // not where they were when the volley started (shots are staggered).

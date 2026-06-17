@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &93893198836069789
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 819003432365332635}
-  m_Layer: 7
-  m_Name: HardPoint5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &819003432365332635
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93893198836069789}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.285, y: 0.221, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 229141062505804476}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &156590906415994626
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,8 +131,6 @@ Transform:
   - {fileID: 3112928996223541304}
   - {fileID: 5353066513213631472}
   - {fileID: 3804011937606680945}
-  - {fileID: 819003432365332635}
-  - {fileID: 4048659031678672046}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &530332886751733414
@@ -318,12 +285,11 @@ MonoBehaviour:
   moveSpeed: 8.27
   rb: {fileID: 3225260646785426062}
   enemyBulletPrefab: {fileID: 3837793817797172696, guid: 8d6e38c9d7a06485091c1332c08b3787, type: 3}
-  hardPoint1: {fileID: 156590906415994626}
-  hardPoint2: {fileID: 8301815630222058359}
-  hardPoint3: {fileID: 741225767253845645}
-  hardPoint4: {fileID: 814448258264560586}
-  hardPoint5: {fileID: 93893198836069789}
-  hardPoint6: {fileID: 2507587191730760346}
+  hardPoints:
+  - {fileID: 156590906415994626}
+  - {fileID: 8301815630222058359}
+  - {fileID: 741225767253845645}
+  - {fileID: 814448258264560586}
   bobSpeed: 3
   bobAmplitude: 2
 --- !u!114 &947794195227398113
@@ -341,37 +307,8 @@ MonoBehaviour:
   health: 12
   scoreValue: 4200
   powerUpPrefab: {fileID: 6155654900405346175, guid: 8f35a695890d04ffe9431fc989409338, type: 3}
---- !u!1 &2507587191730760346
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4048659031678672046}
-  m_Layer: 7
-  m_Name: HardPoint6
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4048659031678672046
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2507587191730760346}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.285, y: -0.235, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 229141062505804476}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  squareExplosionPrefab: {fileID: 0}
+  seekExplosionPrefab: {fileID: 0}
 --- !u!1 &8301815630222058359
 GameObject:
   m_ObjectHideFlags: 0

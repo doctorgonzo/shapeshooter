@@ -116,6 +116,8 @@ MonoBehaviour:
   health: 12
   scoreValue: 4200
   powerUpPrefab: {fileID: 0}
+  squareExplosionPrefab: {fileID: 0}
+  seekExplosionPrefab: {fileID: 0}
 --- !u!50 &1880282939550480490
 Rigidbody2D:
   serializedVersion: 5
@@ -211,12 +213,15 @@ MonoBehaviour:
   moveSpeed: 7.58
   rb: {fileID: 1880282939550480490}
   enemyBulletPrefab: {fileID: 3837793817797172696, guid: 8d6e38c9d7a06485091c1332c08b3787, type: 3}
-  hardPoint1: {fileID: 6345750002102034366}
-  hardPoint2: {fileID: 567874209312609359}
-  hardPoint3: {fileID: 3603291666918783327}
-  hardPoint4: {fileID: 2256061473981813373}
-  hardPoint5: {fileID: 7630167294431666885}
-  hardPoint6: {fileID: 1625551555141711971}
+  hardPoints:
+  - {fileID: 6345750002102034366}
+  - {fileID: 567874209312609359}
+  - {fileID: 3603291666918783327}
+  - {fileID: 2256061473981813373}
+  - {fileID: 7630167294431666885}
+  - {fileID: 1625551555141711971}
+  bobSpeed: 3
+  bobAmplitude: 2
 --- !u!1 &567874209312609359
 GameObject:
   m_ObjectHideFlags: 0

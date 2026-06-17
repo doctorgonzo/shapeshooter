@@ -255,12 +255,10 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 7530319712214327242}
   enemyBulletPrefab: {fileID: 3837793817797172696, guid: 8d6e38c9d7a06485091c1332c08b3787, type: 3}
-  hardPoint1: {fileID: 608761818165450755}
-  hardPoint2: {fileID: 118450327020507974}
-  hardPoint3: {fileID: 6664562098441315073}
-  hardPoint4: {fileID: 0}
-  hardPoint5: {fileID: 0}
-  hardPoint6: {fileID: 0}
+  hardPoints:
+  - {fileID: 608761818165450755}
+  - {fileID: 118450327020507974}
+  - {fileID: 6664562098441315073}
   bobSpeed: 3
   bobAmplitude: 2
 --- !u!1 &6664562098441315073
