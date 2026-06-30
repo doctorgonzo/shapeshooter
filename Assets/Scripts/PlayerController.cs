@@ -3,16 +3,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D playerRB;
-    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float moveSpeed = 13.3f;
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private GameObject hardPoint1;
-    [SerializeField] private GameObject hardPoint2;
-    [SerializeField] private GameObject hardPoint3;
-    [SerializeField, Min(0.01f)] private float singleShotCooldown = 0.25f;
+    [SerializeField, Min(0.01f)] private float singleShotCooldown = 0.01f;
     [SerializeField, Min(0.01f)] private float rapidFireCooldown = 0.08f;
     [SerializeField, Min(0.01f)] private float rapidFireDuration = 6.66f;
     [SerializeField, Min(1)] private int startingGunCount = 1;
+
+    private Rigidbody2D playerRB;
 
     private bool rapidFire = false;
     private int activeGunCount;
@@ -22,32 +20,15 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if (playerRB == null)
-        {
-            playerRB = GetComponent<Rigidbody2D>();
-        }
+        playerRB = GetComponent<Rigidbody2D>();
 
         hardPoints = new[]
         {
-            hardPoint1 != null ? hardPoint1.transform : null,
-            hardPoint2 != null ? hardPoint2.transform : null,
-            hardPoint3 != null ? hardPoint3.transform : null
+            transform.Find("HardPoint1"),
+            transform.Find("HardPoint2"),
+            transform.Find("HardPoint3")
         };
 
-        if (singleShotCooldown <= 0f)
-        {
-            singleShotCooldown = 0.25f;
-        }
-
-        if (rapidFireCooldown <= 0f)
-        {
-            rapidFireCooldown = 0.08f;
-        }
-
-        if (rapidFireDuration <= 0f)
-        {
-            rapidFireDuration = 10.66f;
-        }
         activeGunCount = Mathf.Clamp(startingGunCount, 1, GetAvailableGunCount());
     }
 

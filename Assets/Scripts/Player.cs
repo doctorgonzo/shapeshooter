@@ -9,12 +9,9 @@ public class Player : MonoBehaviour
    [SerializeField] public int maxShield = 5;
    public int shield;
    [SerializeField] private SpriteRenderer shieldSpriteRenderer;
-   [SerializeField] private TMPro.TextMeshProUGUI livesText;
-   [SerializeField] private GameObject[] lifeIcons;
-   [SerializeField] private Transform respawnPoint;
    [SerializeField, Min(0.01f)] private float deathFlashDuration = 1.2f;
    [SerializeField, Min(0.01f)] private float flashInterval = 0.12f;
-   private float shieldRegenStart = 3.5f; // Time in seconds between taking damage
+   private float shieldRegenStart = 3.5f;
     private float damageTimer = 0f;
     private PlayerController playerController;
     private Rigidbody2D playerRB;
@@ -22,6 +19,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer playerSpriteRenderer;
     private Vector3 startingPosition;
     private Quaternion startingRotation;
+    private GameObject[] lifeIcons;
     public bool isDying;
 
     // Run-spanning state lives in PlayerState so it survives scene loads. These proxies keep the
@@ -47,7 +45,14 @@ public class Player : MonoBehaviour
        playerSpriteRenderer = GetComponent<SpriteRenderer>();
        startingPosition = transform.position;
        startingRotation = transform.rotation;
-       // Health and shield always start full at the top of a level; lives carry over via PlayerState.
+
+       lifeIcons = new GameObject[]
+       {
+           GameObject.Find("LivesDisplay1"),
+           GameObject.Find("LivesDisplay2"),
+           GameObject.Find("LivesDisplay3")
+       };
+
        health = maxHealth;
        shield = maxShield;
        UpdateShieldVisual();
@@ -263,17 +268,12 @@ public class Player : MonoBehaviour
        damageTimer = 0f;
        UpdateShieldVisual();
        UpdateLivesVisual();
-       transform.position = respawnPoint != null ? respawnPoint.position : startingPosition;
-       transform.rotation = respawnPoint != null ? respawnPoint.rotation : startingRotation;
+       transform.position = startingPosition;
+       transform.rotation = startingRotation;
        StopPlayerMovement();
    }
    public void UpdateLivesVisual()
    {
-       if (livesText != null)
-       {
-           livesText.text = "Lives: " + lives;
-       }
-
        if (lifeIcons == null)
        {
            return;

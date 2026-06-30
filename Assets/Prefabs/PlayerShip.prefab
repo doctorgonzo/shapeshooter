@@ -128,7 +128,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7620751295428302875
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -185,6 +185,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!58 &8145100831015321170
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -263,7 +264,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &5219091044182388820
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -320,6 +321,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!114 &6447622684550228210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,13 +334,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a96f8ec559d4cab8bef9030bb1d628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  playerRB: {fileID: 678418782776201312}
-  moveSpeed: 12.24
+  moveSpeed: 13.3
   bulletPrefab: {fileID: 3837793817797172696, guid: 1f885b4ecf7ea4fafa520ad4bcef8de5, type: 3}
-  hardPoint1: {fileID: 5254981743395908704}
-  hardPoint2: {fileID: 702982002499025579}
-  hardPoint3: {fileID: 3814943227775808944}
-  singleShotCooldown: 0.25
+  singleShotCooldown: 0.1
   rapidFireCooldown: 0.08
   rapidFireDuration: 6.66
   startingGunCount: 1
@@ -431,15 +429,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7013a0466d74c5f8f3ced5ce7ef9b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  maxHealth: 3
-  maxLives: 3
+  maxHealth: 4
+  health: 0
   maxShield: 5
+  shield: 0
   shieldSpriteRenderer: {fileID: 7620751295428302875}
-  livesText: {fileID: 0}
-  lifeIcons: []
-  respawnPoint: {fileID: 0}
   deathFlashDuration: 1.2
   flashInterval: 0.12
-  shotsFired: 0
-  shotsHit: 0
-  accuracy: 0
+  isDying: 0

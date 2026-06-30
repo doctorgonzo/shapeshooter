@@ -54,6 +54,13 @@ public class EnemyMover : MonoBehaviour
         else if (!isSeeking)
         {
             float bobVelocity = Mathf.Cos(Time.fixedTime * bobSpeed) * bobAmplitude;
+
+            Vector3 vp = Camera.main.WorldToViewportPoint(transform.position);
+            if (vp.y > 0.95f)
+                bobVelocity = -Mathf.Abs(bobVelocity);
+            else if (vp.y < 0.05f)
+                bobVelocity = Mathf.Abs(bobVelocity);
+
             rb.linearVelocity = new Vector2(-moveSpeed, bobVelocity);
         }
         else if (isSeeking)

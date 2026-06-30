@@ -1931,38 +1931,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: 588654434212330839, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-      propertyPath: maxHealth
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 588654434212330839, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-      propertyPath: respawnPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 588654434212330839, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-      propertyPath: lifeIcons.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 588654434212330839, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-      propertyPath: 'lifeIcons.Array.data[0]'
-      value: 
-      objectReference: {fileID: 613899440}
-    - target: {fileID: 588654434212330839, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-      propertyPath: 'lifeIcons.Array.data[1]'
-      value: 
-      objectReference: {fileID: 123337485}
-    - target: {fileID: 588654434212330839, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-      propertyPath: 'lifeIcons.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1253892064}
-    - target: {fileID: 678418782776201312, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-      propertyPath: m_LinearDamping
-      value: 3.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 678418782776201312, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-      propertyPath: m_AngularDamping
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 987746894390766394, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.005
@@ -1978,14 +1946,6 @@ PrefabInstance:
     - target: {fileID: 6044835744537790156, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 6447622684550228210, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-      propertyPath: moveSpeed
-      value: 13.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6447622684550228210, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
-      propertyPath: singleShotCooldown
-      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 7199819965304765481, guid: aaf73276581b9460ba2210fa46fb1d41, type: 3}
       propertyPath: m_LocalPosition.x
